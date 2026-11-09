@@ -1,0 +1,42 @@
+@model GoiCuocMVC.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết gói cước";
+}
+
+<h2 class="mb-3">Chi tiết gói cước</h2>
+
+<div class="card shadow-sm" style="max-width: 640px;">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">@Model.Name</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">@Html.DisplayNameFor(m => m.Id)</dt>
+            <dd class="col-sm-8">@Model.Id</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(m => m.Category)</dt>
+            <dd class="col-sm-8">@Model.Category</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(m => m.Price)</dt>
+            <dd class="col-sm-8">@Model.Price?.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(m => m.ValidityDays)</dt>
+            <dd class="col-sm-8">@Model.ValidityDays ngày</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(m => m.Description)</dt>
+            <dd class="col-sm-8">
+                @if (string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <em class="text-muted">Chưa có mô tả</em>
+                }
+                else
+                {
+                    @Model.Description
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">&larr; Quay lại danh sách</a>
